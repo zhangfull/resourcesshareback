@@ -21,12 +21,6 @@ public class Test {
         System.out.println("Parsed Claims: " + claims);
     }
 
-    public void threadlocal() {
-        ThreadLocal<String> threadLocal = new ThreadLocal<>();
-        threadLocal.set("testValue");
-        System.out.println("ThreadLocal Value: " + threadLocal.get());
-    }
-
     public boolean isLong(Object obj) {
         return obj instanceof Long;
     }
