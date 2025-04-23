@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: resourcesshareback
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/mc_database?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update # 适用于开发环境，用于自动更新数据库表结构。可以改为 create 或 validate。
+    show-sql: false # 打印 SQL 查询
+    database-platform: org.hibernate.dialect.MySQL8Dialect # 使用 MySQL8Dialect
+    properties:
+      hibernate:
+        format_sql: true # 格式化 SQL
+    open-in-view: false # 关闭 OpenSessionInViewFilter，避免延迟加载问题
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.content.pojo
+

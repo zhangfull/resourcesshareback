@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mc.resourcesshareback.mapper.ResourcesMapper">
+
+    <insert id="addResource" parameterType="com.mc.resourcesshareback.pojo.Resource"> INSERT INTO
+        resource_table (resource_name, customer_name, resource_type, resource_size, description, )
+        VALUE (resourceName, customerName, resourceType, resourceSize, description, version) </insert>
+
+    <delete id="deleteResource"> DELETE FROM resource_table WHERE id = #{id}</delete>
+
+    <update id="updateResource" parameterType="com.mc.resourcesshareback.pojo.Resource"> UPDATE SET
+        customer_name=#{customerName}, resource_type=#{resourceType}, description=#{description},
+        version=#{version} WHERE id = #{id} </update>
+
+    <select id="get" resultType="com.mc.resourcesshareback.pojo.Resource"> SELECT * FROM
+        resource_table <where>
+            <if
+                test="version != null and version != 'all'"> AND version = #{version} </if>
+            <if
+                test="type != null and type != 'all'"> AND resource_type = #{type} </if>
+            <if
+                test="name != null and name != 'all'"> AND resource_name = #{name} </if>
+        </where>
+    </select>
+
+    <select id="getResourceById" resultType="com.mc.resourcesshareback.pojo.Resource"> SELECT * FROM
+        resource_table WHERE id = #{id} </select>
+
+    <select id="getResourceForUpdate" resultType="com.mc.resourcesshareback.pojo.Resource"> SELECT *
+        FROM resource_table WHERE id = #{id} FOR UPDATE </select>
+
+    <select id="getByProvider" resultType="com.mc.resourcesshareback.pojo.Resource"> SELECT * FROM
+        resource_table WHERE provider_id = #{id} </select>
+
+    <update id="addDownloadCount"> UPDATE resource_table download_count = download_count + 1 WHERE
+        id = #{id} </update>
+
+</mapper>

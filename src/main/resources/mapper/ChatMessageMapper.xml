@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mc.resourcesshareback.mapper.ChatMessageMapper">
+
+    <delete id="deleteOldMessages"> DELETE FROM chat_message_table WHERE sent_time &lt; NOW()
+        -INTERVAL 7 DAY; </delete>
+
+    <select id="getChatHistory" resultType="com.mc.resourcesshareback.pojo.ChatMessage"> SELECT * FROM chat_message_table WHERE (sender_id = #{senderId} AND
+        receiver_id = #{receiverId}) OR (sender_id = #{receiverId} AND receiver_id = #{senderId}) </select>
+
+    </mapper>

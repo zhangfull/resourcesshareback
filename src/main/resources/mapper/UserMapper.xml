@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mc.resourcesshareback.mapper.UserMapper">
+
+    <insert id="insertUser" parameterType="com.mc.resourcesshareback.pojo.User">
+        INSERT INTO user_table (username, email, password) VALUES (#{username}, #{email}, #{password})
+    </insert>
+
+    <select id="getUserByEmail" resultType="com.mc.resourcesshareback.pojo.User">
+        SELECT * FROM user_table WHERE email = #{email}
+    </select>
+
+    <select id="getUserByUsername" resultType="com.mc.resourcesshareback.pojo.User">
+        SELECT * FROM user_table WHERE username = #{username}
+    </select>
+
+    <select id="getUserById" resultType="com.mc.resourcesshareback.pojo.User">
+        SELECT * FROM user_table WHERE id = #{id}
+    </select>
+
+    <update id="increaseFollower">
+        UPDATE user_table SET followers_count = followers_count + 1 WHERE id = #{id}
+    </update>
+
+    <update id="reduceFollower">
+        UPDATE user_table SET followers_count = followers_count - 1 WHERE id = #{id}
+    </update>
+
+    <select id="getUserByIdForUpdate" resultType="com.mc.resourcesshareback.pojo.User">
+        SELECT * FROM user_table WHERE id = #{id} FOR UPDATE
+    </select>
+
+    <update id="updateUserName">
+        UPDATE user_table SET username = #{name} WHERE id = #{id}
+    </update>
+
+    <update id="updateUserAvatar">
+        UPDATE user_table SET avatar_url = #{avatarUrl} WHERE id = #{id}
+    </update>
+
+</mapper>
