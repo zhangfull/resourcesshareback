@@ -89,7 +89,7 @@ public class ResourcesController {
             // 处理其他类型的异常
             System.err.println("失败：" + e.getMessage());
         }
-        return Result.error(333,"失败");
+        return Result.error(333, "失败");
     }
 
     @CheckLoginState
@@ -98,13 +98,9 @@ public class ResourcesController {
 
         try {
             if (commentRepository.findById(id).get().getUserId() != ThreadLocalUtil.getLongId()) {
-                return Result.error(333,"只能删除自己评论");
+                return Result.error(333, "只能删除自己评论");
             }
-        } catch (Exception e) {
-            System.err.println("失败：" + e.getMessage());
-        }
 
-        try {
             commentRepository.deleteById(id);
             System.out.println("成功，ID: " + id);
             return Result.success();
@@ -115,7 +111,7 @@ public class ResourcesController {
             // 处理其他类型的异常
             System.err.println("失败：" + e.getMessage());
         }
-        return Result.error(333,"失败");
+        return Result.error(333, "失败");
     }
 
 }
